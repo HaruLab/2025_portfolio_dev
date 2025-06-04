@@ -1,6 +1,6 @@
 export default function Card() {
   return (
-    <div className="bg-[var(--card-background)] shadow rounded-2xl overflow-hidden transition hover:shadow-lg">
+    <div className="bg-[var(--card-background)] rounded-2xl overflow-hidden">
       <a href="#">
         <div className="aspect-video overflow-hidden rounded-t-2xl">
           <img
@@ -10,8 +10,13 @@ export default function Card() {
           />
         </div>
         <div className="p-4">
-          <h3 className="text-base font-semibold">カードタイトル</h3>
-          <p className="mt-2 text-sm">
+          <h3
+            className="font-semibold"
+            style={{ fontSize: "var(--font-size-h3)" }}
+          >
+            カードタイトル
+          </h3>
+          <p className="mt-2" style={{ fontSize: "var(--font-size-p)" }}>
             ここに説明文が入ります。サンプルテキストです。
           </p>
         </div>

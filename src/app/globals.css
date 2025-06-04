@@ -9,6 +9,12 @@
   --foreground: #171717;
   /* カード背景 */
   --card-background: #f0f0f0;
+
+  --font-size-h1: 1rem; /* 32pxくらい */
+  --font-size-h2: 1rem; /* 24px */
+  --font-size-h3: 1rem; /* 20px */
+  --font-size-p: 0.5rem; /* 16px */
+  --font-size-li: 1rem; /* 14px */
 }
 
 /* ユーザーのOSがダークモードの場合のスタイル */
