@@ -1,79 +1,103 @@
-// components/Header.tsx
+// Headerコンポーネント：ロゴ・ハンバーガーメニュー・ナビゲーションリンクを持つ
+"use client";
+import { useState } from "react";
+
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const mainMenu = [
+    { href: "/index.html", label: "Home" },
+    { href: "/works.html", label: "Works" },
+    { href: "/about.html", label: "About" },
+    { href: "/contact.html", label: "Contact" },
+  ];
+  const subMenu = [
+    { href: "/tools.html", label: "Webツール" },
+    { href: "/price.html", label: "依頼について" },
+  ];
+
   return (
-    <header>
-      <div className="header__menu">
-        <button id="menu-toggle" aria-label="メニューを開く">
-          <img src="/img/logo_black.png" alt="メニューアイコン" />
+    <header className="">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="/">
+          <img
+            src="/logo_black.png"
+            alt="HARULAB ロゴ"
+            className="h-10 w-auto"
+          />
+        </a>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 rounded-md"
+          aria-label="メニューを開く"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
         </button>
       </div>
 
-      <nav className="header__nav">
-        {/* メインナビゲーション */}
-        <ul className="nav__list">
-          <li className="nav__item">
-            <a href="/index.html" className="nav__link">
-              Home
-            </a>
-          </li>
-          <li className="nav__item">
-            <a href="/works.html" className="nav__link">
-              Works
-            </a>
-          </li>
-          <li className="nav__item">
-            <a href="/about.html" className="nav__link">
-              About
-            </a>
-          </li>
-          <li className="nav__item">
-            <a href="/contact.html" className="nav__link">
-              Contact
-            </a>
-          </li>
-        </ul>
+      {isOpen && (
+        <div className="fixed z-50 inset-0 bg-white p-10 pt-20 md:inset-auto md:top-11 md:right-4 md:w-64 md:h-auto  space-y-4 flex flex-col">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-4 right-4 bg-white rounded-md p-2 text-gray-400 hover:text-gray-500"
+            aria-label="メニューを閉じる"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
 
-        {/* フッター的な追加リンク */}
-        <section className="header__info-links" aria-label="追加情報リンク">
-          <ul className="info-links__list">
-            <li className="info-links__item">
-              <a href="/sitemap.html" className="info-links__link">
-                サイトマップ
-              </a>
-            </li>
-            <li className="info-links__item">
-              <a href="/tools.html" className="info-links__link">
-                Webツール
-              </a>
-            </li>
-            <li className="info-links__item">
-              <a href="/price.html" className="info-links__link">
-                依頼について
-              </a>
-            </li>
-            <li className="info-links__item">
-              <a href="/devices.html" className="info-links__link">
-                使用デバイス
-              </a>
-            </li>
-            <li className="info-links__item">
-              <a href="/blog.html" className="info-links__link">
-                ブログ
-              </a>
-            </li>
-            <li className="info-links__item">
-              <a href="/news.html" className="info-links__link">
-                お知らせ
-              </a>
-            </li>
-            <li className="info-links__item">
-              <a href="/privacy_policy.html" className="info-links__link">
-                プライバシーポリシー
-              </a>
-            </li>
-          </ul>
-        </section>
-      </nav>
+          <nav>
+            <ul>
+              {mainMenu.map((item, i) => (
+                <li key={i}>
+                  <h1
+                    className="text-lg hover:text-blue-500"
+                    style={{ fontSize: "var(--font-size-h1)" }}
+                  >
+                    <a href={item.href} className="block">
+                      {item.label}
+                    </a>
+                  </h1>
+                </li>
+              ))}
+              <hr className="my-2 border-[var(--foreground)]/10" />
+              {subMenu.map((item, i) => (
+                <li key={`sub-${i}`}>
+                  <a
+                    href={item.href}
+                    className="block text-sm font-normal hover:text-blue-500"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
