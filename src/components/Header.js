@@ -13,7 +13,7 @@ export default function Header() {
   ];
   const subMenu = [
     { href: "/tools.html", label: "Webツール" },
-    { href: "/price.html", label: "依頼について" },
+    { href: "/price", label: "依頼について" },
   ];
 
   return (
@@ -48,10 +48,11 @@ export default function Header() {
       </div>
 
       {isOpen && (
-        <div className="fixed z-50 inset-0 bg-white p-10 pt-20 md:inset-auto md:top-11 md:right-4 md:w-64 md:h-auto  space-y-4 flex flex-col">
+        <div className="fixed z-50 inset-0 bg-[var(--background)] p-10 pt-20 ">
+          {" "}
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 bg-white rounded-md p-2 text-gray-400 hover:text-gray-500"
+            className="absolute top-4 right-4  rounded-md p-2 text-gray-400 hover:text-gray-500"
             aria-label="メニューを閉じる"
           >
             <svg
@@ -68,19 +69,18 @@ export default function Header() {
               />
             </svg>
           </button>
-
           <nav>
             <ul>
               {mainMenu.map((item, i) => (
                 <li key={i}>
-                  <h1
-                    className="text-lg hover:text-blue-500"
-                    style={{ fontSize: "var(--font-size-h1)" }}
-                  >
-                    <a href={item.href} className="block">
+                  <a href={item.href} className="block hover:text-blue-500">
+                    <p
+                      style={{ fontSize: "var(--font-size-h1)" }}
+                      className="font-semibold"
+                    >
                       {item.label}
-                    </a>
-                  </h1>
+                    </p>
+                  </a>
                 </li>
               ))}
               <hr className="my-2 border-[var(--foreground)]/10" />

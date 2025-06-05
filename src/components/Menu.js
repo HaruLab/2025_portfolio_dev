@@ -13,9 +13,7 @@ export default function Menu() {
           <Link
             href="/price"
             className="block text-xl font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
-          >
-            依頼について
-          </Link>
+          ></Link>
         </li>
       </ul>
     </nav>
