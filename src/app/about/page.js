@@ -104,7 +104,7 @@ export default function About() {
               className="font-mono text-sm px-2 py-1 rounded"
               style={{ backgroundColor: "var(--select-menu-background)" }}
             >
-              discode:harulab
+              Discode:harulab
             </span>
           </p>
         </section>
