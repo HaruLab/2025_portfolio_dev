@@ -39,7 +39,7 @@ export default function About() {
             className="text-3xl font-semibold mb-6 tracking-wide"
             style={{
               color: "var(--text-color)",
-              fontSize: "var(--font-size-h1)",
+              fontSize: "var(--font-size-h2)",
             }}
           >
             SNS
@@ -89,24 +89,22 @@ export default function About() {
           </h2>
 
           <p className="mb-3 text-lg">
-            Mail{" "}
-            <a href="mailto:your.email@example.com" className="hover:underline">
+            <a href="mailto:harulablab@gmail.com" className="hover:underline">
               <span
                 className="font-mono text-sm px-2 py-1 rounded"
                 style={{ backgroundColor: "var(--select-menu-background)" }}
               >
-                your.email@example.com
+                harulablab@gmail.com
               </span>
             </a>
           </p>
 
           <p className="">
-            Discord{" "}
             <span
               className="font-mono text-sm px-2 py-1 rounded"
               style={{ backgroundColor: "var(--select-menu-background)" }}
             >
-              YourDiscord#1234
+              discode:harulab
             </span>
           </p>
         </section>
