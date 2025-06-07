@@ -1,3 +1,5 @@
+/* 全部共通して使用するcssを記す場所 */
+
 /* Tailwind CSSを読み込み */
 @import "tailwindcss";
 
@@ -9,6 +11,8 @@
   --foreground: #171717;
   /* カード背景 */
   --card-background: #f0f0f0;
+  /* セレクトメニュー背景 */
+  --select-menu-background: #f0f0f0;
 
   --font-size-h1: 2rem; /* 32pxくらい */
   --font-size-h2: 1rem; /* 24px */
@@ -26,6 +30,8 @@
     --foreground: #ededed;
     /* カード背景（ダークモード用） */
     --card-background: #1a1a1a;
+    /* セレクトメニュー背景（ダークモード用） */
+    --select-menu-background: #1a1a1a;
   }
 }
 

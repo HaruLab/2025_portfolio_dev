@@ -6,10 +6,10 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const mainMenu = [
-    { href: "/index.html", label: "Home" },
-    { href: "/works.html", label: "Works" },
-    { href: "/about.html", label: "About" },
-    { href: "/contact.html", label: "Contact" },
+    { href: "/", label: "Home" }, // トップページは「/」だけでOK
+    { href: "/works", label: "Works" }, // worksページは「/works」
+    { href: "/about", label: "About" }, // aboutページは「/about」
+    { href: "/contact", label: "Contact" }, // contactページは「/contact」
   ];
   const subMenu = [
     { href: "/tools.html", label: "Webツール" },
@@ -18,12 +18,12 @@ export default function Header() {
 
   return (
     <header className="">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="fixed z-50 top-0 left-0 w-full max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <a href="/">
           <img
             src="/logo_black.png"
             alt="HARULAB ロゴ"
-            className="h-10 w-auto"
+            className="h-15 w-auto"
           />
         </a>
         <button
@@ -56,7 +56,7 @@ export default function Header() {
             aria-label="メニューを閉じる"
           >
             <svg
-              className="h-6 w-6"
+              className="h-10 w-10"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

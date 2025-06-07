@@ -1,3 +1,4 @@
+"use client";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
@@ -8,7 +9,7 @@ export default function Home() {
     <div>
       <Header />
 
-      <main className="flex-1 p-4">
+      <main className="pt-30 flex-1 p-4">
         <ul
           className="
               grid
