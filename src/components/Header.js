@@ -21,7 +21,7 @@ export default function Header() {
       <div className="fixed z-50 top-0 left-0 w-full max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/">
           <img
-            src="/logo_black.png"
+            src="/2025_portfolio_dev/images/main.jpg/logo_black.png"
             alt="HARULAB ロゴ"
             className="h-15 w-auto"
           />
