@@ -1,54 +1,41 @@
-/* 全部共通して使用するcssを記す場所 */
-
 /* Tailwind CSSを読み込み */
 @import "tailwindcss";
 
 /* ベーススタイルのカスタムプロパティ（変数）設定 */
 :root {
-  /* 背景色（ライトモード用） */
-  --background: #ffffff;
-  /* 文字色（ライトモード用） */
-  --foreground: #171717;
-  /* カード背景 */
+  /* ライトモード用配色（目にやさしい） */
+  --background: #f9f9f9; /* まぶしくない白 */
+  --foreground: #222222; /* やさしい黒 */
   --card-background: #f0f0f0;
-  /* セレクトメニュー背景 */
   --select-menu-background: #f0f0f0;
-  /* ボーダーカラー */
-  --border-color: #cccccc;
+  --border-color: #dddddd;
 
-  --font-size-h1: 1.5rem; /* 32pxくらい */
-  --font-size-h2: 1.2rem; /* 24px */
-  --font-size-h3: 1rem; /* 20px */
-  --font-size-p: 0.5rem; /* 16px */
-  --font-size-li: 1rem; /* 14px */
+  --font-size-h1: 1.5rem;
+  --font-size-h2: 1.2rem;
+  --font-size-h3: 1rem;
+  --font-size-p: 0.9rem;
+  --font-size-li: 0.9rem;
 }
 
-/* ユーザーのOSがダークモードの場合のスタイル */
+/* ダークモード用（やさしいコントラスト） */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* 背景色（ダークモード用） */
-    --background: #0a0a0a;
-    /* 文字色（ダークモード用） */
-    --foreground: #ededed;
-    /* カード背景（ダークモード用） */
+    --background: #0e0e0e; /* 真っ黒じゃなくやや明るめ */
+    --foreground: #e0e0e0; /* ほんの少しグレーな白 */
     --card-background: #1a1a1a;
-    /* セレクトメニュー背景（ダークモード用） */
     --select-menu-background: #1a1a1a;
-    /*ボーダーカラー（ダークモード用）*/
     --border-color: #333333;
   }
 }
 
-/* bodyタグの基本スタイル */
+/* body基本スタイル */
 body {
-  /* 背景色を変数から取得 */
   background-color: var(--background);
-  /* 文字色を変数から取得 */
   color: var(--foreground);
-  /* フォントファミリーを設定（Notoとサンセリフ体） */
   font-family: "Noto Sans JP", sans-serif;
 }
 
+/* Syneフォント */
 .font-syne {
   font-family: "Syne", sans-serif;
 }
