@@ -183,17 +183,6 @@ export default function Price() {
             <p>
               納期目安: <span id="estimated-delivery">----</span>
             </p>
-            <p>
-              サンプル動画リンク:{" "}
-              <a
-                href="https://example.com/sample-video"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline"
-              >
-                サンプル動画
-              </a>
-            </p>
           </div>
 
           {/* 計算ボタン */}
@@ -265,13 +254,13 @@ function calculate() {
   // ベース料金（動画タイプ + プラン）
   let basePrice = 0;
   if (videoType === "mv") {
-    if (plan === "basic") basePrice = 50000;
-    else if (plan === "normal") basePrice = 80000;
-    else if (plan === "premium") basePrice = 120000;
+    if (plan === "basic") basePrice = 5000;
+    else if (plan === "normal") basePrice = 10000;
+    else if (plan === "premium") basePrice = 30000;
   } else if (videoType === "pv") {
-    if (plan === "basic") basePrice = 60000;
-    else if (plan === "normal") basePrice = 90000;
-    else if (plan === "premium") basePrice = 130000;
+    if (plan === "basic") basePrice = 10000;
+    else if (plan === "normal") basePrice = 20000;
+    else if (plan === "premium") basePrice = 30000;
   }
 
   // 納期割引（2か月以上なら10%割引）

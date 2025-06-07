@@ -41,6 +41,6 @@ body {
   background-color: var(--background);
   /* 文字色を変数から取得 */
   color: var(--foreground);
-  /* フォントファミリーを設定（Arvoとサンセリフ体） */
-  font-family: "Syne", sans-serif;
+  /* フォントファミリーを設定（Notoとサンセリフ体） */
+  font-family: "Noto Sans JP", sans-serif;
 }

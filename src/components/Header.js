@@ -1,15 +1,15 @@
-// Headerコンポーネント：ロゴ・ハンバーガーメニュー・ナビゲーションリンクを持つ
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const mainMenu = [
-    { href: "/", label: "Home" }, // トップページは「/」だけでOK
-    { href: "/works", label: "Works" }, // worksページは「/works」
-    { href: "/about", label: "About" }, // aboutページは「/about」
-    { href: "/contact", label: "Contact" }, // contactページは「/contact」
+    { href: "/", label: "Home" },
+    { href: "/works", label: "Works" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
   ];
   const subMenu = [
     { href: "/tools.html", label: "Webツール" },
@@ -19,13 +19,14 @@ export default function Header() {
   return (
     <header className="">
       <div className="fixed z-50 top-0 left-0 w-full max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        <a href="/">
+        <Link href="/">
           <img
             src="/logo_black.png"
             alt="HARULAB ロゴ"
             className="h-15 w-auto"
           />
-        </a>
+        </Link>
+
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="p-2 rounded-md"
@@ -48,11 +49,10 @@ export default function Header() {
       </div>
 
       {isOpen && (
-        <div className="fixed z-50 inset-0 bg-[var(--background)] p-10 pt-20 ">
-          {" "}
+        <div className="fixed z-50 inset-0 bg-[var(--background)] p-10 pt-20">
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4  rounded-md p-2 text-gray-400 hover:text-gray-500"
+            className="absolute top-4 right-4 rounded-md p-2 text-gray-400 hover:text-gray-500"
             aria-label="メニューを閉じる"
           >
             <svg
@@ -73,25 +73,26 @@ export default function Header() {
             <ul>
               {mainMenu.map((item, i) => (
                 <li key={i}>
-                  <a href={item.href} className="block hover:text-blue-500">
+                  <Link href={item.href} className="block hover:text-blue-500">
                     <p
                       style={{ fontSize: "var(--font-size-h1)" }}
                       className="font-semibold"
                     >
                       {item.label}
                     </p>
-                  </a>
+                  </Link>
                 </li>
               ))}
               <hr className="my-2 border-[var(--foreground)]/10" />
               {subMenu.map((item, i) => (
                 <li key={`sub-${i}`}>
-                  <a
+                  {/* subMenuもLinkに変更 */}
+                  <Link
                     href={item.href}
                     className="block text-sm font-normal hover:text-blue-500"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
