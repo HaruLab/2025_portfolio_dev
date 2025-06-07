@@ -25,7 +25,7 @@ function SelectField({ id, label, options, description, onChange }) {
       <select
         id={id}
         name={id}
-        className="w-full py-6 px-4 mt-3 appearance-none rounded-full bg-[var(--select-menu-background)]"
+        className="w-full py-8 px-5 mt-5 appearance-none rounded-full bg-[var(--select-menu-background)]"
         onChange={onChange}
       >
         {options.map((opt, index) => (
@@ -161,7 +161,7 @@ export default function Price() {
     <div>
       <Header />
 
-      <main className="pt-30 flex-1 p-10 max-w-2xl mx-auto">
+      <main className="pt-25 flex-1 p-10 max-w-2xl mx-auto">
         <form id="mvForm">
           {/* 動画タイプの選択 */}
           <SelectField
@@ -205,7 +205,7 @@ export default function Price() {
           {/* 計算結果表示 */}
           <div className="">
             <h2
-              className="text-2xl font-bold mb-2"
+              className="text-2xl font-bold mb-5 pt-5"
               style={{ fontSize: "var(--font-size-h1)" }}
             >
               計算結果
@@ -238,7 +238,7 @@ export default function Price() {
 
         {/* 補足説明 */}
 
-        <aside className="mt-5">
+        <aside className="mt-10">
           <h2
             className="mb-5 font-bold"
             style={{ fontSize: "var(--font-size-h1)" }}
