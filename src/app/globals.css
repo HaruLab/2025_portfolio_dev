@@ -13,9 +13,11 @@
   --card-background: #f0f0f0;
   /* セレクトメニュー背景 */
   --select-menu-background: #f0f0f0;
+  /* ボーダーカラー */
+  --border-color: #cccccc;
 
-  --font-size-h1: 2rem; /* 32pxくらい */
-  --font-size-h2: 1rem; /* 24px */
+  --font-size-h1: 1.5rem; /* 32pxくらい */
+  --font-size-h2: 1.2rem; /* 24px */
   --font-size-h3: 1rem; /* 20px */
   --font-size-p: 0.5rem; /* 16px */
   --font-size-li: 1rem; /* 14px */
@@ -32,6 +34,8 @@
     --card-background: #1a1a1a;
     /* セレクトメニュー背景（ダークモード用） */
     --select-menu-background: #1a1a1a;
+    /*ボーダーカラー（ダークモード用）*/
+    --border-color: #333333;
   }
 }
 
@@ -43,4 +47,8 @@ body {
   color: var(--foreground);
   /* フォントファミリーを設定（Notoとサンセリフ体） */
   font-family: "Noto Sans JP", sans-serif;
+}
+
+.font-syne {
+  font-family: "Syne", sans-serif;
 }

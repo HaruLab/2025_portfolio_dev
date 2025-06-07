@@ -3,11 +3,11 @@ import Link from "next/link";
 export default function Card({ imgSrc, title, description, href }) {
   const CardContent = (
     <>
-      <div className="aspect-video soverflow-hidden">
+      <div className="aspect-video overflow-hidden">
         <img src={imgSrc} className="w-full h-full object-cover" alt={title} />
       </div>
       <div
-        className="absolute bottom-0 left-0 w-full text-[var(--foreground)] p-3
+        className="absolute bottom-0 left-0 w-full text-black p-3
                    opacity-0 group-hover:opacity-100 active:opacity-100
                    transition-opacity duration-300"
       >
@@ -17,9 +17,9 @@ export default function Card({ imgSrc, title, description, href }) {
         >
           {title}
         </h3>
-        <p className="mt-2" style={{ fontSize: "var(--font-size-p)" }}>
+        {/* <p className="mt-1" style={{ fontSize: "var(--font-size-p)" }}>
           {description}
-        </p>
+        </p> */}
       </div>
     </>
   );

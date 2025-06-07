@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -21,7 +20,7 @@ export default function Header() {
       <div className="fixed z-50 top-0 left-0 w-full max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/">
           <img
-            src="/2025_portfolio_dev/images/main.jpg/logo_black.png"
+            src="/logo_black.png"
             alt="HARULAB ロゴ"
             className="h-15 w-auto"
           />
@@ -52,7 +51,7 @@ export default function Header() {
         <div className="fixed z-50 inset-0 bg-[var(--background)] p-10 pt-20">
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 rounded-md p-2 text-gray-400 hover:text-gray-500"
+            className="absolute top-3 right-3 rounded-md p-2"
             aria-label="メニューを閉じる"
           >
             <svg
@@ -73,20 +72,19 @@ export default function Header() {
             <ul>
               {mainMenu.map((item, i) => (
                 <li key={i}>
-                  <Link href={item.href} className="block hover:text-blue-500">
+                  <Link href={item.href} className="block ">
                     <p
                       style={{ fontSize: "var(--font-size-h1)" }}
-                      className="font-semibold"
+                      className="font-semibold pt-2 font-syne"
                     >
                       {item.label}
                     </p>
                   </Link>
                 </li>
               ))}
-              <hr className="my-2 border-[var(--foreground)]/10" />
+              <hr className="my-5 border-[var(--foreground)]/10" />
               {subMenu.map((item, i) => (
                 <li key={`sub-${i}`}>
-                  {/* subMenuもLinkに変更 */}
                   <Link
                     href={item.href}
                     className="block text-sm font-normal hover:text-blue-500"
