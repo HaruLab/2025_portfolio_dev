@@ -8,7 +8,6 @@ export default function Header() {
     { href: "/", label: "Home" },
     { href: "/works", label: "Works" },
     { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
   ];
   const subMenu = [
     { href: "/tools.html", label: "Webツール" },
