@@ -10,7 +10,7 @@ export default function Header() {
     { href: "/about", label: "About" },
   ];
   const subMenu = [
-    { href: "/tools.html", label: "Webツール" },
+    { href: "/tools", label: "Webツール" },
     { href: "/price", label: "依頼について" },
   ];
 

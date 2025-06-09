@@ -25,7 +25,7 @@ function SelectField({ id, label, options, description, onChange }) {
       <select
         id={id}
         name={id}
-        className="w-full py-8 px-5 mt-5 appearance-none rounded-full bg-[var(--select-menu-background)]"
+        className="w-full py-3 px-5 mt-3 appearance-none rounded-full bg-[var(--select-menu-background)]"
         onChange={onChange}
       >
         {options.map((opt, index) => (
