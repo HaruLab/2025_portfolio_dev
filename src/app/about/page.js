@@ -2,11 +2,13 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BottomMenu from "@/components/bottom_menu";
 
 export default function About() {
   return (
     <div className="min-h-screen flex flex-col font-syne">
       <Header />
+      <BottomMenu />
 
       <main className="max-w-3xl mx-auto flex-grow px-8 pt-20">
         {/* ロゴ丸く囲い＆中央揃え */}

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BottomMenu from "@/components/bottom_menu";
 
 // セレクトフィールド（選択式の入力）コンポーネント
 function SelectField({ id, label, options, description, onChange }) {
@@ -160,6 +161,7 @@ export default function Price() {
   return (
     <div>
       <Header />
+      <BottomMenu />
 
       <main className="pt-25 flex-1 p-10 max-w-2xl mx-auto">
         <form id="mvForm">

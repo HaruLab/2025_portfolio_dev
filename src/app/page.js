@@ -2,7 +2,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
-import Menu from "../components/Menu";
+import BottomMenu from "@/components/bottom_menu";
 
 export default function Home() {
   const cards = [
@@ -46,6 +46,7 @@ export default function Home() {
   return (
     <div>
       <Header />
+      <BottomMenu />
 
       <main className="pt-30 flex-1 p-4">
         <ul
