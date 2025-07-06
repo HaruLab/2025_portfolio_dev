@@ -31,8 +31,8 @@ export default function About() {
         </h1>
 
         {/* 自己紹介 */}
-        <section className="mb-5 text-left text-md leading-relaxed max-w-xl opacity-90">
-          <p>映像・写真・音楽が好き、そして作ること全般が好きです。</p>{" "}
+        <section className="mt-5 mb-10 text-left text-sm leading-relaxed max-w-xl opacity-90">
+          <p>作ること全般が好きです。映像・写真・音楽などを作っています。</p>{" "}
         </section>
 
         {/* SNSリンク */}
@@ -46,7 +46,7 @@ export default function About() {
           >
             SNS
           </h2>
-          <div className="flex gap-3 text-xl font-medium">
+          <div className="flex gap-3 text-sm ">
             <a
               href="https://twitter.com/your_x_account"
               target="_blank"

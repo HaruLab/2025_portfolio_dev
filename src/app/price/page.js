@@ -251,7 +251,9 @@ export default function Price() {
               <p>2025年2月より料金を改定しました。</p>
             </DetailsInfo>
             <DetailsInfo summary="この計算機について">
-              <p>最終的な料金を決定するものではありません</p>
+              <p>
+                最終的な料金を決定するものではありません。実際には動画の長さ、イラストの枚数等によって価格は変動します。
+              </p>
             </DetailsInfo>
 
             <DetailsInfo summary="注意事項">
@@ -259,7 +261,9 @@ export default function Price() {
             </DetailsInfo>
 
             <DetailsInfo summary="お支払い方法について">
-              <p>PayPal、Kyash、Amazonギフト券に対応。銀行振込は非対応。</p>
+              <p>
+                PayPal、Kyash、Amazonギフト券に対応。誠に勝手ながら銀行振込は対応しておりません。
+              </p>
             </DetailsInfo>
 
             <DetailsInfo summary="事前に伝えてほしいこと">
