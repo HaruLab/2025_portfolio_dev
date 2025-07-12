@@ -9,7 +9,7 @@ export default function Card({ imgSrc, title, description, href }) {
   const CardContent = (
     <>
       <div className="aspect-video overflow-hidden">
-        <Image src={imgSrc} width={500} height={300} className="w-full h-full object-cover" alt={title} />
+        <Image loader={imageLoader} src={imgSrc} width={500} height={300} className="w-full h-full object-cover" alt={title} />
       </div>
       <div
         className="absolute bottom-0 left-0 w-full text-black p-3
