@@ -1,4 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Syne,
+  Montserrat,
+  Noto_Sans_JP,
+} from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -9,6 +15,22 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+});
+
+// 変更：Noto Sans JPをデフォルトフォントとして設定
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["latin", "japanese"], // 日本語も使うなら "japanese" を入れると良い
+  display: "swap",
 });
 
 export const metadata = {
@@ -27,7 +49,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${montserrat.variable} ${notoSansJP.className} antialiased`}
       >
         {children}
       </body>

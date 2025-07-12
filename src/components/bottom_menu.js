@@ -1,9 +1,14 @@
 import React from "react";
-import { Home, Search, User } from "lucide-react"; // ← "User" を大文字で！
+import { Home, Twitter, User } from "lucide-react";
+
 const menuItems = [
   { label: "ホーム", icon: <Home size={22} />, link: "/" },
-  { label: "検索", icon: <Search size={22} />, link: "/search" },
-  { label: "ユーザー", icon: <User size={22} />, link: "/user" }, // ←ここも "User"
+  {
+    label: "Twitter",
+    icon: <Twitter size={22} />,
+    link: "https://x.com/harulablab",
+  },
+  { label: "ユーザー", icon: <User size={22} />, link: "/about" },
 ];
 
 const BottomMenu = () => (

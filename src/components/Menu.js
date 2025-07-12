@@ -6,7 +6,7 @@ export default function Menu() {
   return (
     <nav
       aria-label="サイトナビゲーション"
-      className="bg-[var(--background)] text-[var(--foreground)] p-6 rounded-lg"
+      className="bg-[var(--background)] text-[var(--foreground)] p-6 -lg"
     >
       <ul>
         <li>

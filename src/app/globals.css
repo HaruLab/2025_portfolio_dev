@@ -1,41 +1,44 @@
-/* Tailwind CSSを読み込み */
+/* ✅ Google Fonts：Syneフォント読み込み */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Syne:wght@400;700;800;900&family=Montserrat:wght@400;700;900&display=swap");
+/* ✅ Tailwind CSSの読み込み */
 @import "tailwindcss";
 
-/* ベーススタイルのカスタムプロパティ（変数）設定 */
+/* ✅ 基本カラー・フォントサイズ（ライトモード） */
 :root {
-  /* ライトモード用配色（目にやさしい） */
-  --background: #f9f9f9; /* まぶしくない白 */
-  --foreground: #222222; /* やさしい黒 */
+  --background: #f9f9f9;
+  --foreground: #222222;
   --card-background: #f0f0f0;
   --select-menu-background: #f0f0f0;
   --border-color: #dddddd;
 
   --font-size-h1: 1.4rem;
   --font-size-h2: 1rem;
-  --font-size-h3: rem;
+  --font-size-h3: 1rem;
   --font-size-p: 0.4rem;
   --font-size-li: 0.5rem;
 }
 
-/* ダークモード用（やさしいコントラスト） */
+/* ✅ ダークモード設定 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0e0e0e; /* 真っ黒じゃなくやや明るめ */
-    --foreground: #e0e0e0; /* ほんの少しグレーな白 */
+    --background: #0e0e0e;
+    --foreground: #e0e0e0;
     --card-background: #1a1a1a;
     --select-menu-background: #1a1a1a;
     --border-color: #333333;
   }
 }
 
-/* body基本スタイル */
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Noto Sans JP", sans-serif; /* ここを追加 */
 }
 
-/* futuleフォント */
+/* ✅ Syneフォント */
 .font-syne {
-  font-family: "jost", sans-serif;
+  font-family: "Syne", sans-serif;
+}
+.font-montserrat {
+  font-family: "Montserrat", sans-serif;
 }
