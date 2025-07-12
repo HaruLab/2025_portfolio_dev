@@ -3,8 +3,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomMenu from "@/components/bottom_menu";
-
 import Image from "next/image";
+import logo from "../../../public/logo_black.png";
 
 export default function About() {
   return (
@@ -35,7 +35,7 @@ export default function About() {
             style={{ borderColor: "var(--border-color)" }}
           >
             <Image
-              src="/logo_black.png"
+              src={logo}
               alt="ロゴ"
               width={160}
               height={160}

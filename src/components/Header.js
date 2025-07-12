@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import logo from "../../public/logo_black.png";
 
 const mainMenu = [
   { href: "/", label: "Home" },
@@ -25,7 +26,7 @@ export default function Header() {
         {/* ロゴ */}
         <Link href="/">
           <Image
-            src="/logo_black.png"
+            src={logo}
             alt="HARULAB ロゴ"
             width={68}
             height={68}
