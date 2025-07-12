@@ -1,10 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Card({ imgSrc, title, description, href }) {
   const CardContent = (
     <>
       <div className="aspect-video overflow-hidden">
-        <img src={imgSrc} className="w-full h-full object-cover" alt={title} />
+        <Image src={imgSrc} width={500} height={300} className="w-full h-full object-cover" alt={title} />
       </div>
       <div
         className="absolute bottom-0 left-0 w-full text-black p-3

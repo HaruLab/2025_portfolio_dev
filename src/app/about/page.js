@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomMenu from "@/components/bottom_menu";
 
+import Image from "next/image";
+
 export default function About() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -32,9 +34,11 @@ export default function About() {
             className="rounded-full border-2 p-2 w-40 h-40 flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-500"
             style={{ borderColor: "var(--border-color)" }}
           >
-            <img
+            <Image
               src="/logo_black.png"
               alt="ロゴ"
+              width={160}
+              height={160}
               className="w-40 h-auto rounded-full"
             />
           </div>

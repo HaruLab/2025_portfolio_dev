@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const mainMenu = [
   { href: "/", label: "Home" },
@@ -23,9 +24,11 @@ export default function Header() {
       <div className="fixed z-5 top-0 left-0 w-full max-w-6xl mx-auto px-3 py-2 flex items-center justify-between">
         {/* ロゴ */}
         <Link href="/">
-          <img
+          <Image
             src="/logo_black.png"
             alt="HARULAB ロゴ"
+            width={68}
+            height={68}
             className="h-17 w-auto"
           />
         </Link>

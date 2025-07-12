@@ -4,7 +4,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-export default function works_page() {
+export default function WorksPage() {
   const [a, setA] = useState(""); // 入力1
   const [b, setB] = useState(""); // 入力2
   const [result, setResult] = useState(null); // 結果
