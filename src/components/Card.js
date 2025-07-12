@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const imageLoader = ({ src, width, quality }) => {
+  return `${src}?w=${width}&q=${quality || 75}`;
+};
+
 export default function Card({ imgSrc, title, description, href }) {
   const CardContent = (
     <>

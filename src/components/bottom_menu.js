@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Home, Twitter, User } from "lucide-react";
 
 const menuItems = [
@@ -18,11 +19,26 @@ const BottomMenu = () => (
       <div style={styles.tint}></div>
       <div style={styles.shine}></div>
       <div style={styles.content}>
-        {menuItems.map((item) => (
-          <a key={item.label} href={item.link} style={styles.link}>
+        {menuItems.map((item) => {
+          const isExternal = item.link.startsWith('http');
+          const linkContent = (
             <span style={styles.icon}>{item.icon}</span>
-          </a>
-        ))}
+          );
+
+          if (isExternal) {
+            return (
+              <a key={item.label} href={item.link} style={styles.link} target="_blank" rel="noopener noreferrer">
+                {linkContent}
+              </a>
+            );
+          }
+
+          return (
+            <Link key={item.label} href={item.link} style={styles.link}>
+              {linkContent}
+            </Link>
+          );
+        })}
       </div>
     </nav>
 
