@@ -63,7 +63,7 @@ export default function Header() {
           {/* 閉じるボタン */}
           <button
             onClick={toggleMenu}
-            className="absolute top-6 right-6"
+            className="absolute top-7 right-4"
             aria-label="メニューを閉じる"
           >
             <svg
