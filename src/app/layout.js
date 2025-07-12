@@ -29,7 +29,7 @@ const montserrat = Montserrat({
 
 // 変更：Noto Sans JPをデフォルトフォントとして設定
 const notoSansJP = Noto_Sans_JP({
-  subsets: ["latin", "japanese"], // 日本語も使うなら "japanese" を入れると良い
+  subsets: ["latin"], // これなら通る
   display: "swap",
 });
 
