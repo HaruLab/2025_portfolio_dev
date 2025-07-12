@@ -45,7 +45,7 @@ export default function About() {
         </div>
 
         {/* 名前 */}
-        <h1 className="text-3xl font-extrabold mb-5 text-left w-full">
+        <h1 className="text-3xl font-extrabold mb-5 mt-30 text-left w-full">
           晴芽 (HARULAB)
         </h1>
 

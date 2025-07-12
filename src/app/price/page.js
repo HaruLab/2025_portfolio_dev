@@ -1,108 +1,25 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomMenu from "@/components/bottom_menu";
-
-// セレクトフィールド（選択式の入力）コンポーネント
-function SelectField({ id, label, options, description, onChange }) {
-  return (
-    <div className="mb-5">
-      {/* 見出し */}
-      <h2
-        className="text-xl font-bold mb-2"
-        style={{ fontSize: "var(--font-size-h1)" }}
-      >
-        {label}
-      </h2>
-
-      {/* 視覚的には見えないが、アクセシビリティのためにラベルを残す */}
-      <label htmlFor={id} className="sr-only">
-        {label}
-      </label>
-
-      {/* セレクトボックス */}
-      <select
-        id={id}
-        name={id}
-        className="w-full py-3 px-5 mt-3 appearance-none rounded-full bg-[var(--select-menu-background)]"
-        onChange={onChange}
-      >
-        {options.map((opt, index) => (
-          <option key={`${id}-opt-${index}`} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
-
-      {/* 説明表示（オプション） */}
-      {description && (
-        <details className="pt-2 pb-2 rounded-lg  mt-2 transition-all group">
-          <summary
-            className="cursor-pointer flex items-center justify-between"
-            style={{ fontSize: "var(--font-size-h3)" }}
-          >
-            <span>{description.summary}</span>
-            <svg
-              className="ml-2 w-4 h-10 transition-transform duration-300 group-open:rotate-180"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </summary>
-          <p className="mt-5 text-sm text-left">{description.text}</p>
-        </details>
-      )}
-    </div>
-  );
-}
-
-function DetailsInfo({ summary, children }) {
-  return (
-    <details
-      className="border-t last:border-b pt-5 pb-5 transition-all"
-      style={{ borderColor: "var(--border-color)" }}
-    >
-      <summary
-        className="text-md cursor-pointer flex items-center justify-between font-semibold"
-        style={{ fontSize: "var(--font-size-h2)" }}
-      >
-        <span>{summary}</span>
-        <svg
-          className="ml-2 w-4 h-4 transition-transform duration-300 group-open:rotate-180"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </summary>
-      <div className="mt-5  text-sm text-left">{children}</div>
-    </details>
-  );
-}
+import SelectField from "@/components/SelectField";
+import DetailsInfo from "@/components/DetailsInfo";
 
 export default function Price() {
-  function calculate() {
-    const videoType = document.getElementById("videoType").value;
-    const plan = document.getElementById("plan").value;
-    const deadline = document.getElementById("deadline").value;
-    const background = document.getElementById("background").value;
+  const [videoType, setVideoType] = useState("mv");
+  const [plan, setPlan] = useState("basic");
+  const [deadline, setDeadline] = useState("0");
+  const [background, setBackground] = useState("yes");
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [deliveryText, setDeliveryText] = useState("指定なし");
 
-    // ベース料金（動画タイプ + プラン）
+  useEffect(() => {
+    calculateEstimatedPrice();
+  }, [videoType, plan, deadline, background]);
+
+  const calculateEstimatedPrice = () => {
     let basePrice = 0;
     if (videoType === "mv") {
       if (plan === "basic") basePrice = 5000;
@@ -114,49 +31,21 @@ export default function Price() {
       else if (plan === "premium") basePrice = 35000;
     }
 
-    // 背景の追加料金（なしなら +5000）
     const backgroundExtra = background === "yes" ? 0 : 5000;
 
-    // 納期の追加料金（指定なし＝0、1か月以内=+5000、2か月以上=+2000、3か月以上=0）
-    let deadlineExtra = 0;
-    let deliveryText = "指定なし";
+    let currentDeadlineExtra = 0;
+    let currentDeliveryText = "指定なし";
     if (deadline === "1") {
-      deadlineExtra = 5000;
-      deliveryText = "1か月以内";
+      currentDeadlineExtra = 5000;
+      currentDeliveryText = "1か月以内";
     } else if (deadline === "2") {
-      deadlineExtra = 2000;
-      deliveryText = "2か月以上";
+      currentDeadlineExtra = 2000;
+      currentDeliveryText = "2か月以上";
     }
 
-    const totalPrice = basePrice + backgroundExtra + deadlineExtra;
-
-    // 表示更新
-    document.getElementById(
-      "estimated-budget"
-    ).textContent = `¥${totalPrice.toLocaleString()}`;
-    document.getElementById("estimated-delivery").textContent = deliveryText;
-  }
-
-  useEffect(() => {
-    calculate();
-
-    const ids = ["videoType", "plan", "deadline", "background"];
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.addEventListener("change", calculate);
-      }
-    });
-
-    return () => {
-      ids.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.removeEventListener("change", calculate);
-        }
-      });
-    };
-  }, []);
+    setTotalPrice(basePrice + backgroundExtra + currentDeadlineExtra);
+    setDeliveryText(currentDeliveryText);
+  };
 
   return (
     <div>
@@ -165,7 +54,6 @@ export default function Price() {
 
       <main className="pt-25 flex-1 p-10 max-w-2xl mx-auto">
         <form id="mvForm">
-          {/* 動画タイプの選択 */}
           <SelectField
             id="videoType"
             label="動画タイプ選択"
@@ -173,8 +61,9 @@ export default function Price() {
               { value: "mv", label: "ミュージックビデオ (MV)" },
               { value: "pv", label: "プロモーションビデオ (PV)" },
             ]}
+            value={videoType}
+            onChange={(e) => setVideoType(e.target.value)}
           />
-          {/* プランの選択 */}
           <SelectField
             id="plan"
             label="プラン選択"
@@ -183,8 +72,9 @@ export default function Price() {
               { value: "normal", label: "竹 (一部3DCG OK)" },
               { value: "premium", label: "梅 (Full 3DCG OK)" },
             ]}
+            value={plan}
+            onChange={(e) => setPlan(e.target.value)}
           />
-          {/* 納期 */}
           <SelectField
             id="deadline"
             label="納期まで"
@@ -193,8 +83,9 @@ export default function Price() {
               { value: "2", label: "2か月以上" },
               { value: "0", label: "指定なし" },
             ]}
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
           />
-          {/* 背景の有無 */}
           <SelectField
             id="background"
             label="背景イラスト"
@@ -202,9 +93,9 @@ export default function Price() {
               { value: "yes", label: "背景あり" },
               { value: "no", label: "背景なし" },
             ]}
-            onChange={calculate}
+            value={background}
+            onChange={(e) => setBackground(e.target.value)}
           />
-          {/* 計算結果表示 */}
           <div className="">
             <h2
               className="text-2xl font-bold mb-5 pt-5"
@@ -221,7 +112,7 @@ export default function Price() {
                   className=""
                   style={{ fontSize: "var(--font-size-h2)" }}
                 >
-                  ----
+                  ¥{totalPrice.toLocaleString()}
                 </span>
               </p>
               <p className="">
@@ -231,14 +122,12 @@ export default function Price() {
                   className=""
                   style={{ fontSize: "var(--font-size-h2)" }}
                 >
-                  ----
+                  {deliveryText}
                 </span>
               </p>
             </div>
           </div>
         </form>
-
-        {/* 補足説明 */}
 
         <aside className="mt-10">
           <h2

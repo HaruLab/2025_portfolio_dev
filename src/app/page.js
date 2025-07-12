@@ -1,7 +1,7 @@
 "use client";
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import BottomMenu from "@/components/bottom_menu";
 
 export default function Home() {
