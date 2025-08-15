@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomMenu from "@/components/bottom_menu";
 import SelectField from "@/components/SelectField";
 import DetailsInfo from "@/components/DetailsInfo";
+import gsap from "gsap";
 
 export default function Price() {
   const [videoType, setVideoType] = useState("mv");
@@ -15,9 +16,37 @@ export default function Price() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [deliveryText, setDeliveryText] = useState("指定なし");
 
+  const budgetRef = useRef(null);
+  const deliveryRef = useRef(null);
+
+  useEffect(() => {
+    // ページロード時の全体アニメ
+    gsap.from("main", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power2.out",
+    });
+  }, []);
+
   useEffect(() => {
     calculateEstimatedPrice();
   }, [videoType, plan, deadline, background]);
+
+  useEffect(() => {
+    // 金額アニメーション
+    gsap.fromTo(
+      budgetRef.current,
+      { scale: 0.8, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" }
+    );
+    // 納期アニメーション
+    gsap.fromTo(
+      deliveryRef.current,
+      { x: -10, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+    );
+  }, [totalPrice, deliveryText]);
 
   const calculateEstimatedPrice = () => {
     let basePrice = 0;
@@ -109,7 +138,7 @@ export default function Price() {
                 金額{" "}
                 <span
                   id="estimated-budget"
-                  className=""
+                  ref={budgetRef}
                   style={{ fontSize: "var(--font-size-h2)" }}
                 >
                   ¥{totalPrice.toLocaleString()}
@@ -119,7 +148,7 @@ export default function Price() {
                 納期{" "}
                 <span
                   id="estimated-delivery"
-                  className=""
+                  ref={deliveryRef}
                   style={{ fontSize: "var(--font-size-h2)" }}
                 >
                   {deliveryText}
@@ -130,11 +159,6 @@ export default function Price() {
         </form>
 
         <aside className="mt-10">
-          <h2
-            className="mb-5 font-bold"
-            style={{ fontSize: "var(--font-size-h1)" }}
-          ></h2>
-
           <div>
             <DetailsInfo summary="価格改定のお知らせ">
               <p>2025年2月より料金を改定しました。</p>

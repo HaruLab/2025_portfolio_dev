@@ -86,8 +86,8 @@ export default function Header() {
             <ul>
               {mainMenu.map(({ href, label }, i) => (
                 <li key={i}>
-                  <Link href={href} className="block">
-                    <p className="font-semibold font-montserrat text-5xl pt-2">
+                  <Link href={href} className="group block">
+                    <p className="font-semibold font-montserrat text-5xl pt-2  hover:text-[#59ccde] transition-colors duration-300">
                       {label}
                     </p>
                   </Link>

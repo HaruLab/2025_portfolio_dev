@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Card from "@/components/Card";
 import BottomMenu from "@/components/bottom_menu";
+import gsap from "gsap";
 
 export default function WorksPage() {
   const cards = [
@@ -39,11 +41,31 @@ export default function WorksPage() {
     },
   ];
 
+  // --- refs for animation ---
+  const cardRefs = useRef([]);
+  cardRefs.current = [];
+
+  const addToRefs = (el) => {
+    if (el && !cardRefs.current.includes(el)) {
+      cardRefs.current.push(el);
+    }
+  };
+
+  useEffect(() => {
+    // カードを順番にフェードイン
+    gsap.from(cardRefs.current, {
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: "power2.out",
+    });
+  }, []);
+
   return (
     <div>
       <Header />
 
-      {/* タイトル＋サブタイトル：横幅固定 */}
       <section className="max-w-3xl mx-auto w-full pt-20 pb-6 px-6 md:px-12 flex items-center justify-between">
         <h1 className="text-5xl font-bold font-montserrat">WORKS</h1>
         <p className="font-montserrat text-right leading-relaxed max-w-xs text-[0.5rem]">
@@ -52,11 +74,10 @@ export default function WorksPage() {
         </p>
       </section>
 
-      {/* メイン：カード一覧 */}
       <main className="max-w-3xl mx-auto w-full flex-1 px-6 md:px-12 pt-5">
         <ul className="grid gap-2 sm:grid-cols-2 list-none p-0 m-0">
           {cards.map((card, index) => (
-            <li key={index}>
+            <li key={index} ref={addToRefs}>
               <Card {...card} />
             </li>
           ))}
