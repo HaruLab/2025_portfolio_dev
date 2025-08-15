@@ -16,6 +16,12 @@ export default function WorksPage() {
       href: "https://www.youtube.com/watch?v=sSSP_BU-bDU&list=PL_IDDWCeMOvfUv5lD2VfvLX4TSVfLvrZv",
     },
     {
+      imgSrc: "https://img.youtube.com/vi/Gy-CwCqOysY/maxresdefault.jpg",
+      title: "学マス】メクルメ / poyu (cover)",
+      description: "MV",
+      href: "https://www.youtube.com/watch?v=Gy-CwCqOysY",
+    },
+    {
       imgSrc: "https://i.ytimg.com/vi/wrpKJBB3g6E/hqdefault.jpg",
       title: "オーバーレイワールド",
       description: "MV",
