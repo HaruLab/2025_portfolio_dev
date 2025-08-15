@@ -3,8 +3,11 @@
 /* ✅ Tailwind CSSの読み込み */
 @import "tailwindcss";
 
-/* ✅ 基本カラー・フォントサイズ（ライトモード） */
+/* ✅ テーマカラー・基本カラー・フォントサイズ（ライトモード） */
 :root {
+  /* 👇 ここにテーマカラーを定義 👇 */
+  --theme-color: #3dcfd4; /* デフォルトのテーマカラー（緑） */
+
   --background: #f9f9f9;
   --foreground: #222222;
   --card-background: #f0f0f0;
@@ -41,4 +44,16 @@ body {
 }
 .font-montserrat {
   font-family: "Montserrat", sans-serif;
+}
+
+/* ✅ テーマカラーを使用するクラス */
+.theme-bg {
+  background-color: var(--theme-color);
+  color: var(--theme-text);
+}
+.theme-text {
+  color: var(--theme-color);
+}
+.theme-border {
+  border-color: var(--theme-color);
 }

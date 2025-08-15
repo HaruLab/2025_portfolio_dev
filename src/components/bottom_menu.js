@@ -3,13 +3,13 @@ import Link from "next/link";
 import { Home, Twitter, User } from "lucide-react";
 
 const menuItems = [
-  { label: "ホーム", icon: <Home size={22} />, link: "/" },
+  { label: "ホーム", icon: <Home size={19} />, link: "/" },
   {
     label: "Twitter",
-    icon: <Twitter size={22} />,
+    icon: <Twitter size={19} />,
     link: "https://x.com/harulablab",
   },
-  { label: "ユーザー", icon: <User size={22} />, link: "/about" },
+  { label: "ユーザー", icon: <User size={19} />, link: "/about" },
 ];
 
 const BottomMenu = () => {
@@ -17,22 +17,22 @@ const BottomMenu = () => {
     nav: {
       position: "fixed",
       bottom: "30px",
-      right: "30px",
-      width: "150px",
+      right: "20px",
+      width: "120px",
       maxWidth: "50%",
-      height: "60px",
+      height: "50px",
       padding: "0.5rem",
       borderRadius: "3rem",
       overflow: "hidden",
       zIndex: 1000,
       isolation: "isolate",
-      boxShadow: "0 1px 70px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.01)",
+      boxShadow: "0 1px 70px rgba(0, 0, 0, 0), 0 1px 1px rgba(0, 0, 0, 0.01)",
     },
     glassEffect: {
       position: "absolute",
       inset: 0,
-      backdropFilter: "blur(1px)",
-      WebkitBackdropFilter: "blur(1px)",
+      backdropFilter: "blur(4px)",
+      WebkitBackdropFilter: "blur(4px)",
       filter: "url(#glass-distortion)",
       zIndex: 0,
       borderRadius: "inherit",
@@ -40,10 +40,10 @@ const BottomMenu = () => {
     tint: {
       position: "absolute",
       inset: 0,
-      background: "color-mix(in srgb, var(--card-background) 40%, transparent)",
+      background: "color-mix(in srgb, var(--card-background) 20%, transparent)",
       zIndex: 1,
       borderRadius: "inherit",
-      transition: "background 0.3s ease",
+      transition: "background 0.1s ease",
     },
     shine: {
       position: "absolute",
@@ -88,14 +88,18 @@ const BottomMenu = () => {
         <div style={styles.shine}></div>
         <div style={styles.content}>
           {menuItems.map((item) => {
-            const isExternal = item.link.startsWith('http');
-            const linkContent = (
-              <span style={styles.icon}>{item.icon}</span>
-            );
+            const isExternal = item.link.startsWith("http");
+            const linkContent = <span style={styles.icon}>{item.icon}</span>;
 
             if (isExternal) {
               return (
-                <a key={item.label} href={item.link} style={styles.link} target="_blank" rel="noopener noreferrer">
+                <a
+                  key={item.label}
+                  href={item.link}
+                  style={styles.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {linkContent}
                 </a>
               );
@@ -117,7 +121,7 @@ const BottomMenu = () => {
             type="fractalNoise"
             baseFrequency="0.01 0.01"
             numOctaves="1"
-            seed="5"
+            seed="1"
             result="turbulence"
           />
           <feComponentTransfer in="turbulence" result="mapped">
