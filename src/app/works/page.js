@@ -52,22 +52,38 @@ export default function WorksPage() {
   };
 
   useEffect(() => {
+    // ヘッダータイトルの文字を1つずつ表示
+    gsap.from(".title-char", {
+      opacity: 0, // 最初は透明
+      y: 20, // 少し下に位置
+      duration: 1, // 1秒かけて動かす
+      stagger: 0.1, // 次の文字は0.1秒遅れて動かす
+      ease: "power3.out", // 動きを緩やかにする
+    });
+
     // カードを順番にフェードイン
     gsap.from(cardRefs.current, {
       opacity: 0,
       y: 50,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power2.out",
+      duration: 1.2,
+      stagger: 0.3,
+      ease: "power3.out",
     });
   }, []);
+
+  // 「WORKS」の文字を1つずつに分ける
+  const titleChars = "WORKS".split("").map((char, index) => (
+    <span key={index} className="title-char inline-block">
+      {char}
+    </span>
+  ));
 
   return (
     <div>
       <Header />
 
       <section className="max-w-3xl mx-auto w-full pt-20 pb-6 px-6 md:px-12 flex items-center justify-between">
-        <h1 className="text-5xl font-bold font-montserrat">WORKS</h1>
+        <h1 className="text-5xl font-bold font-montserrat">{titleChars}</h1>
         <p className="font-montserrat text-right leading-relaxed max-w-xs text-[0.5rem]">
           Creative works <br />
           from 2022 to 2025.

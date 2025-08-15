@@ -7,40 +7,101 @@ import BottomMenu from "@/components/bottom_menu";
 import SelectField from "@/components/SelectField";
 import DetailsInfo from "@/components/DetailsInfo";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+// 価格設定の定数
+const PRICE_CONFIG = {
+  mv: {
+    basic: 5000,
+    normal: 10000,
+    premium: 30000,
+  },
+  pv: {
+    basic: 10000,
+    normal: 15000,
+    premium: 35000,
+  },
+  background: 5000,
+  deadline: {
+    1: 5000, // 1か月以内
+    2: 2000, // 2か月以上
+    0: 0, // 指定なし
+  },
+};
+
+const DEADLINE_TEXT = {
+  1: "1か月以内",
+  2: "2か月以上",
+  0: "指定なし",
+};
 
 export default function Price() {
   const [videoType, setVideoType] = useState("mv");
   const [plan, setPlan] = useState("basic");
   const [deadline, setDeadline] = useState("0");
   const [background, setBackground] = useState("yes");
+
   const [totalPrice, setTotalPrice] = useState(0);
+  const [basePrice, setBasePrice] = useState(0);
+  const [backgroundExtra, setBackgroundExtra] = useState(0);
+  const [deadlineExtra, setDeadlineExtra] = useState(0);
   const [deliveryText, setDeliveryText] = useState("指定なし");
 
   const budgetRef = useRef(null);
   const deliveryRef = useRef(null);
+  const formRef = useRef(null);
+  const asideRef = useRef(null);
 
+  // ページロード時のアニメーション
   useEffect(() => {
-    // ページロード時の全体アニメ
-    gsap.from("main", {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      ease: "power2.out",
-    });
+    const timeline = gsap.timeline();
+    timeline
+      .from(formRef.current, {
+        opacity: 0,
+        y: 30,
+        duration: 1,
+        ease: "power2.out",
+      })
+      .from(
+        asideRef.current.children,
+        {
+          opacity: 0,
+          y: 20,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power2.out",
+        },
+        "<0.5"
+      );
   }, []);
 
+  // 料金計算ロジック
   useEffect(() => {
+    const calculateEstimatedPrice = () => {
+      const newBasePrice = PRICE_CONFIG[videoType][plan] || 0;
+      const newBackgroundExtra =
+        background === "yes" ? 0 : PRICE_CONFIG.background;
+      const newDeadlineExtra = PRICE_CONFIG.deadline[deadline] || 0;
+
+      setBasePrice(newBasePrice);
+      setBackgroundExtra(newBackgroundExtra);
+      setDeadlineExtra(newDeadlineExtra);
+      setTotalPrice(newBasePrice + newBackgroundExtra + newDeadlineExtra);
+      setDeliveryText(DEADLINE_TEXT[deadline] || "指定なし");
+    };
+
     calculateEstimatedPrice();
   }, [videoType, plan, deadline, background]);
 
+  // 金額・納期アニメーション
   useEffect(() => {
-    // 金額アニメーション
     gsap.fromTo(
       budgetRef.current,
       { scale: 0.8, opacity: 0 },
       { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" }
     );
-    // 納期アニメーション
     gsap.fromTo(
       deliveryRef.current,
       { x: -10, opacity: 0 },
@@ -48,41 +109,13 @@ export default function Price() {
     );
   }, [totalPrice, deliveryText]);
 
-  const calculateEstimatedPrice = () => {
-    let basePrice = 0;
-    if (videoType === "mv") {
-      if (plan === "basic") basePrice = 5000;
-      else if (plan === "normal") basePrice = 10000;
-      else if (plan === "premium") basePrice = 30000;
-    } else if (videoType === "pv") {
-      if (plan === "basic") basePrice = 10000;
-      else if (plan === "normal") basePrice = 15000;
-      else if (plan === "premium") basePrice = 35000;
-    }
-
-    const backgroundExtra = background === "yes" ? 0 : 5000;
-
-    let currentDeadlineExtra = 0;
-    let currentDeliveryText = "指定なし";
-    if (deadline === "1") {
-      currentDeadlineExtra = 5000;
-      currentDeliveryText = "1か月以内";
-    } else if (deadline === "2") {
-      currentDeadlineExtra = 2000;
-      currentDeliveryText = "2か月以上";
-    }
-
-    setTotalPrice(basePrice + backgroundExtra + currentDeadlineExtra);
-    setDeliveryText(currentDeliveryText);
-  };
-
   return (
     <div>
       <Header />
       <BottomMenu />
 
       <main className="pt-25 flex-1 p-10 max-w-2xl mx-auto">
-        <form id="mvForm">
+        <form id="mvForm" ref={formRef}>
           <SelectField
             id="videoType"
             label="動画タイプ選択"
@@ -125,40 +158,61 @@ export default function Price() {
             value={background}
             onChange={(e) => setBackground(e.target.value)}
           />
-          <div className="">
-            <h2
-              className="text-2xl font-bold mb-5 pt-5"
-              style={{ fontSize: "var(--font-size-h1)" }}
-            >
-              計算結果
-            </h2>
 
-            <div className="pt-2 pb-2 ">
-              <p className="">
-                金額{" "}
-                <span
-                  id="estimated-budget"
-                  ref={budgetRef}
-                  style={{ fontSize: "var(--font-size-h2)" }}
-                >
-                  ¥{totalPrice.toLocaleString()}
-                </span>
-              </p>
-              <p className="">
-                納期{" "}
-                <span
-                  id="estimated-delivery"
-                  ref={deliveryRef}
-                  style={{ fontSize: "var(--font-size-h2)" }}
-                >
-                  {deliveryText}
-                </span>
-              </p>
+          <div className="mt-10 p-6 bg-[var(--select-menu-background)] rounded-lg transition-colors duration-300">
+            <h2 className="text-xl font-bold mb-4 text-left text-gray-800 dark:text-gray-200">
+              料金
+            </h2>
+            <div className="border-t border-gray-300 dark:border-gray-700 pt-4 text-sm">
+              <div className="flex justify-between items-center mb-1">
+                <p>基本料金</p>
+                <p>¥{basePrice.toLocaleString()}</p>
+              </div>
+              <div className="flex justify-between items-center mb-1">
+                <p>背景イラスト</p>
+                <p>
+                  {backgroundExtra > 0
+                    ? `+ ¥${backgroundExtra.toLocaleString()}`
+                    : "含まれる"}
+                </p>
+              </div>
+              <div className="flex justify-between items-center mb-3">
+                <p>納期オプション</p>
+                <p>
+                  {deadlineExtra > 0
+                    ? `+ ¥${deadlineExtra.toLocaleString()}`
+                    : "なし"}
+                </p>
+              </div>
+              <div className="border-t border-gray-300 dark:border-gray-700 pt-3">
+                <div className="flex justify-between items-baseline mb-2">
+                  <p className="text-base font-bold text-gray-700 dark:text-gray-300">
+                    合計金額
+                  </p>
+                  <p
+                    className="text-3xl font-extrabold text-black dark:text-white"
+                    ref={budgetRef}
+                  >
+                    ¥{totalPrice.toLocaleString()}
+                  </p>
+                </div>
+                <div className="flex justify-between items-baseline">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    おおよその納期
+                  </p>
+                  <p
+                    className="text-lg font-semibold text-gray-700 dark:text-gray-300"
+                    ref={deliveryRef}
+                  >
+                    {deliveryText}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </form>
 
-        <aside className="mt-10">
+        <aside className="mt-10" ref={asideRef}>
           <div>
             <DetailsInfo summary="価格改定のお知らせ">
               <p>2025年2月より料金を改定しました。</p>
