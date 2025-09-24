@@ -34,14 +34,17 @@ export default function About() {
       });
     };
 
-    animate(titleRef.current.querySelectorAll(".title-char"), { y: 20, duration: 1, stagger: 0.1 });
+    animate(titleRef.current.querySelectorAll(".title-char"), {
+      y: 20,
+      duration: 1,
+      stagger: 0.1,
+    });
     animate(descriptionRef.current, { y: 20, duration: 1 });
     animate(logoRef.current, { duration: 1.5, scale: 0.8 });
     animate(nameRef.current, { y: 20, duration: 1 });
     animate(introRef.current, { y: 20, duration: 1 });
     animate(snsRef.current, { y: 20, duration: 1 });
     animate(contactRef.current, { y: 20, duration: 1 });
-
   }, []);
 
   const titleChars = "About".split("").map((char, index) => (
@@ -98,7 +101,7 @@ export default function About() {
           className="mt-5 mb-10 text-left text-sm leading-relaxed max-w-xl opacity-90"
           ref={introRef}
         >
-          <p>作ること全般が好きです。映像・写真・音楽などを作っています。</p>
+          <p>作ること全般が好きです。</p>
         </section>
 
         <section className="mb-10 text-left w-full" ref={snsRef}>
