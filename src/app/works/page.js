@@ -57,14 +57,22 @@ export default function WorksPage() {
     }
   };
 
+  // タイトル文字を分割して span に変換
+  const title = "WORKS";
+  const titleChars = title.split("").map((char, index) => (
+    <span key={index} className="title-char inline-block">
+      {char}
+    </span>
+  ));
+
   useEffect(() => {
     // ヘッダータイトルの文字を1つずつ表示
     gsap.from(".title-char", {
-      opacity: 0, // 最初は透明
-      y: 20, // 少し下に位置
-      duration: 1, // 1秒かけて動かす
-      stagger: 0.1, // 次の文字は0.1秒遅れて動かす
-      ease: "power3.out", // 動きを緩やかにする
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      stagger: 0.1,
+      ease: "power3.out",
     });
 
     // カードを順番にフェードイン
@@ -76,13 +84,6 @@ export default function WorksPage() {
       ease: "power3.out",
     });
   }, []);
-
-  // 「WORKS」の文字を1つずつに分ける
-  const titleChars = "WORKS".split("").map((char, index) => (
-    <span key={index} className="title-char inline-block">
-      {char}
-    </span>
-  ));
 
   return (
     <div>

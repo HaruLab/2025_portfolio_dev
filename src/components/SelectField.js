@@ -1,11 +1,11 @@
 import React from "react";
+import { ChevronDown } from "lucide-react";
 
 const SelectField = ({ id, label, options, description, onChange, value }) => {
   return (
     <div className="mb-5">
       <h2
-        className="text-xl font-bold mb-2"
-        style={{ fontSize: "var(--font-size-h1)" }}
+        className="text-h1 font-bold mb-2"
       >
         {label}
       </h2>
@@ -31,23 +31,10 @@ const SelectField = ({ id, label, options, description, onChange, value }) => {
       {description && (
         <details className="pt-2 pb-2 rounded-lg  mt-2 transition-all group">
           <summary
-            className="cursor-pointer flex items-center justify-between"
-            style={{ fontSize: "var(--font-size-h3)" }}
+            className="text-h3 cursor-pointer flex items-center justify-between"
           >
             <span>{description.summary}</span>
-            <svg
-              className="ml-2 w-4 h-10 transition-transform duration-300 group-open:rotate-180"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+            <ChevronDown className="ml-2 w-4 h-4 transition-transform duration-300 group-open:rotate-180" />
           </summary>
           <p className="mt-5 text-sm text-left">{description.text}</p>
         </details>

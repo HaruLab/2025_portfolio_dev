@@ -1,12 +1,16 @@
+"use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/logo_black.png";
+import ThemeToggleButton from "./ThemeToggleButton";
 
 const mainMenu = [
   { href: "/", label: "Home" },
   { href: "/works", label: "Works" },
   { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
 ];
 
 const subMenu = [
@@ -29,7 +33,7 @@ export default function Header() {
             src={logo}
             alt="HARULAB ロゴ"
             width={68}
-            height={68}
+            height={60}
             className="h-17 w-auto"
           />
         </Link>
@@ -45,7 +49,7 @@ export default function Header() {
             className="w-7 h-7"
             fill="none"
             stroke="currentColor"
-            strokeWidth={2}
+            strokeWidth={1}
             viewBox="0 0 24 24"
           >
             <path
@@ -71,7 +75,7 @@ export default function Header() {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              strokeWidth={2}
+              strokeWidth={1}
             >
               <path
                 strokeLinecap="round"
@@ -87,7 +91,7 @@ export default function Header() {
               {mainMenu.map(({ href, label }, i) => (
                 <li key={i}>
                   <Link href={href} className="group block">
-                    <p className="font-semibold font-montserrat text-5xl pt-2  hover:text-[#59ccde] transition-colors duration-300">
+                    <p className="font-semibold font-montserrat text-3xl tracking-wide hover:text-[#59ccde] transition-colors duration-300">
                       {label}
                     </p>
                   </Link>
@@ -108,6 +112,9 @@ export default function Header() {
               ))}
             </ul>
           </nav>
+          <div className="absolute bottom-11 left-11">
+            <ThemeToggleButton />
+          </div>
         </div>
       )}
     </header>

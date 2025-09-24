@@ -1,12 +1,16 @@
-/* ✅ Google Fonts：Syneフォント読み込み */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Syne:wght@400;700;800;900&family=Montserrat:wght@400;700;900&display=swap");
+/* ================================ */
+/* ✅ Google Fonts 読み込み */
+/* ================================ */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Noto+Serif+JP&family=Syne:wght@400;700;800;900&family=Montserrat:wght@400;700;900&family=Jost:wght@400;500;600;700;800&display=swap");
+
 /* ✅ Tailwind CSSの読み込み */
 @import "tailwindcss";
 
+/* ================================ */
 /* ✅ テーマカラー・基本カラー・フォントサイズ（ライトモード） */
+/* ================================ */
 :root {
-  /* 👇 ここにテーマカラーを定義 👇 */
-  --theme-color: #3dcfd4; /* デフォルトのテーマカラー（緑） */
+  --theme-color: #3dcfd4;
 
   --background: #f9f9f9;
   --foreground: #222222;
@@ -21,32 +25,45 @@
   --font-size-li: 0.5rem;
 }
 
+/* ================================ */
 /* ✅ ダークモード設定 */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0e0e0e;
-    --foreground: #e0e0e0;
-    --card-background: #1a1a1a;
-    --select-menu-background: #1a1a1a;
-    --border-color: #333333;
-  }
+/* ================================ */
+.dark {
+  --background: #0e0e0e;
+  --foreground: #e0e0e0;
+  --card-background: #1a1a1a;
+  --select-menu-background: #1a1a1a;
+  --border-color: #333333;
 }
 
+/* ================================ */
+/* ✅ 基本設定 */
+/* ================================ */
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: "Noto Sans JP", sans-serif; /* ここを追加 */
+  font-family: "Noto Sans JP", sans-serif; /* デフォルトフォント */
 }
 
-/* ✅ Syneフォント */
+/* ================================ */
+/* ✅ フォントユーティリティ */
+/* ================================ */
 .font-syne {
   font-family: "Syne", sans-serif;
 }
 .font-montserrat {
   font-family: "Montserrat", sans-serif;
 }
+.font-jost {
+  font-family: "Jost", sans-serif;
+}
+.font-noto-serif {
+  font-family: "Noto Serif JP", serif;
+}
 
-/* ✅ テーマカラーを使用するクラス */
+/* ================================ */
+/* ✅ テーマカラークラス */
+/* ================================ */
 .theme-bg {
   background-color: var(--theme-color);
   color: var(--theme-text);
@@ -56,4 +73,92 @@ body {
 }
 .theme-border {
   border-color: var(--theme-color);
+}
+
+/* ================================ */
+/* ✅ フォントサイズユーティリティ */
+/* ================================ */
+.text-h1 {
+  font-size: var(--font-size-h1);
+}
+.text-h2 {
+  font-size: var(--font-size-h2);
+}
+.text-h3 {
+  font-size: var(--font-size-h3);
+}
+.text-p {
+  font-size: var(--font-size-p);
+}
+.text-li {
+  font-size: var(--font-size-li);
+}
+
+/* ================================ */
+/* ✅ Blog Prose Styles */
+/* ================================ */
+.prose {
+  color: var(--foreground);
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: var(--foreground);
+  margin-bottom: 0.5em;
+}
+
+.prose p {
+  margin-bottom: 1em;
+  line-height: 1.7;
+}
+
+.prose a {
+  color: var(--theme-color);
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+}
+
+.prose ul,
+.prose ol {
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.prose li {
+  margin-bottom: 0.25em;
+}
+
+.prose blockquote {
+  border-left: 4px solid var(--border-color);
+  padding-left: 1em;
+  margin-left: 0;
+  font-style: italic;
+  color: var(--foreground) / 80;
+}
+
+.prose code {
+  background-color: var(--select-menu-background);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: var(--font-geist-mono);
+}
+
+.prose pre {
+  background-color: var(--select-menu-background);
+  padding: 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.prose pre code {
+  padding: 0;
+  background-color: transparent;
 }

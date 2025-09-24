@@ -6,6 +6,7 @@ import {
   Noto_Sans_JP,
 } from "next/font/google";
 import "./globals.css";
+import { Providers } from "@/components/Providers";
 
 // 必要なフォントをここで全て定義します
 const geistSans = Geist({
@@ -40,8 +41,25 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ja">
+    <html lang="ja" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                function getInitialTheme() {
+                  const storedTheme = localStorage.getItem('theme');
+                  if (storedTheme) return storedTheme;
+                  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                const theme = getInitialTheme();
+                if (theme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                }
+              })();
+            `,
+          }}
+        />
         {/* ✅ Google サイト認証用 meta タグ */}
         <meta
           name="google-site-verification"
@@ -51,7 +69,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} ${montserrat.variable} ${notoSansJP.className} antialiased`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

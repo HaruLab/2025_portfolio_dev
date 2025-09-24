@@ -1,0 +1,71 @@
+
+.nav {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  width: 120px;
+  max-width: 50%;
+  height: 50px;
+  padding: 0.5rem;
+  border-radius: 3rem;
+  overflow: hidden;
+  z-index: 1000;
+  isolation: isolate;
+  box-shadow: 0 1px 70px rgba(0, 0, 0, 0), 0 1px 1px rgba(0, 0, 0, 0.01);
+}
+
+.glassEffect {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 0;
+  border-radius: inherit;
+}
+
+.tint {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--card-background) 20%, transparent);
+  z-index: 1;
+  border-radius: inherit;
+  transition: background 0.1s ease;
+}
+
+.shine {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.2),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.1);
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+
+.link {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: var(--foreground);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+
+.label {
+  font-size: 11px;
+  color: var(--foreground);
+}

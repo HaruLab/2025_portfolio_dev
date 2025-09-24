@@ -21,46 +21,27 @@ export default function About() {
   const contactRef = useRef(null);
 
   useEffect(() => {
-    // スクロールトリガーの設定
-    const sections = [
-      { target: titleRef.current, stagger: 0.1, duration: 1, y: 20 },
-      { target: descriptionRef.current, stagger: 0, duration: 1, y: 20 },
-      { target: logoRef.current, stagger: 0, duration: 1.5, y: 0, scale: 0.8 },
-      { target: nameRef.current, stagger: 0, duration: 1, y: 20 },
-      { target: introRef.current, stagger: 0, duration: 1, y: 20 },
-      { target: snsRef.current, stagger: 0, duration: 1, y: 20 },
-      { target: contactRef.current, stagger: 0, duration: 1, y: 20 },
-    ];
+    const animate = (target, vars) => {
+      if (!target) return;
+      gsap.from(target, {
+        scrollTrigger: {
+          trigger: target,
+          start: "top 80%",
+        },
+        opacity: 0,
+        ease: "power3.out",
+        ...vars,
+      });
+    };
 
-    sections.forEach((section) => {
-      // staggerは文字を分割してアニメーションする場合に使うため、
-      // 適切な処理に分岐
-      if (section.target === titleRef.current) {
-        gsap.from(section.target.querySelectorAll(".title-char"), {
-          scrollTrigger: {
-            trigger: section.target,
-            start: "top 80%", // 画面の上から80%の位置でアニメーション開始
-          },
-          opacity: 0,
-          y: section.y,
-          duration: section.duration,
-          stagger: section.stagger,
-          ease: "power3.out",
-        });
-      } else {
-        gsap.from(section.target, {
-          scrollTrigger: {
-            trigger: section.target,
-            start: "top 80%",
-          },
-          opacity: 0,
-          y: section.y,
-          scale: section.scale,
-          duration: section.duration,
-          ease: "power3.out",
-        });
-      }
-    });
+    animate(titleRef.current.querySelectorAll(".title-char"), { y: 20, duration: 1, stagger: 0.1 });
+    animate(descriptionRef.current, { y: 20, duration: 1 });
+    animate(logoRef.current, { duration: 1.5, scale: 0.8 });
+    animate(nameRef.current, { y: 20, duration: 1 });
+    animate(introRef.current, { y: 20, duration: 1 });
+    animate(snsRef.current, { y: 20, duration: 1 });
+    animate(contactRef.current, { y: 20, duration: 1 });
+
   }, []);
 
   const titleChars = "About".split("").map((char, index) => (

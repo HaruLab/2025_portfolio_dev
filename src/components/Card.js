@@ -9,7 +9,14 @@ export default function Card({ imgSrc, title, description, href }) {
   const CardContent = (
     <>
       <div className="aspect-video overflow-hidden">
-        <Image loader={imageLoader} src={imgSrc} width={500} height={300} className="w-full h-full object-cover" alt={title} />
+        <Image
+          loader={imageLoader}
+          src={imgSrc}
+          width={500}
+          height={300}
+          className="w-full h-full object-cover"
+          alt={title}
+        />
       </div>
       <div
         className="absolute bottom-0 left-0 w-full text-black p-3
@@ -17,8 +24,7 @@ export default function Card({ imgSrc, title, description, href }) {
                    transition-opacity duration-300"
       >
         <h3
-          className="font-semibold"
-          style={{ fontSize: "var(--font-size-h3)" }}
+          className="font-semibold text-h3"
         >
           {title}
         </h3>
