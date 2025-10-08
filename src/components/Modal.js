@@ -1,4 +1,3 @@
-
 "use client";
 
 import { X } from "lucide-react";
@@ -24,7 +23,7 @@ export default function Modal({ card, onClose }) {
       onClick={onClose}
     >
       <div
-        className="bg-[var(--glass-background)] backdrop-blur-md overflow-hidden w-full h-full md:rounded-lg md:max-w-[700px] md:h-auto md:max-h-[calc(100vh-8rem)] md:mx-28 md:my-16 flex flex-col relative"
+        className="bg-[var(--background)] overflow-hidden w-full h-full md:rounded-lg md:max-w-[700px] md:h-auto md:max-h-[calc(100vh-8rem)] md:mx-28 md:my-16 flex flex-col relative border-2 border-[var(--border-color)]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -36,7 +35,7 @@ export default function Modal({ card, onClose }) {
 
         <div className="flex flex-col w-full h-full overflow-hidden">
           {/* Video Area */}
-          <div className="w-full aspect-video bg-black flex-shrink-0">
+          <div className="w-full aspect-video bg-black flex-shrink-0 md:rounded-t-lg overflow-hidden">
             <div className="relative w-full h-full">
               {videoId ? (
                 <iframe
@@ -56,13 +55,17 @@ export default function Modal({ card, onClose }) {
 
           {/* Details Area */}
           <div className="p-6 md:p-12 flex-grow overflow-y-auto min-h-0">
-            <h2 className="text-2xl font-bold mb-3 text-[var(--foreground)]">{card.title}</h2>
+            <h2 className="text-2xl font-bold mb-3 text-[var(--foreground)]">
+              {card.title}
+            </h2>
             <p className="text-sm opacity-80 mb-4 text-[var(--foreground)]">
               {card.description}
             </p>
             {card.credits && (
               <div>
-                <h3 className="font-semibold mb-2 border-b border-[var(--border-color)] pb-1 text-[var(--foreground)]">Credits</h3>
+                <h3 className="font-semibold mb-2 border-b border-[var(--border-color)] pb-1 text-[var(--foreground)]">
+                  Credits
+                </h3>
                 <ul className="text-sm space-y-1 opacity-90 text-[var(--foreground)]">
                   {Object.entries(card.credits).map(([role, name]) => (
                     <li key={role} className="flex justify-between">
