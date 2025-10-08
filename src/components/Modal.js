@@ -20,11 +20,11 @@ export default function Modal({ card, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex justify-center items-center p-4 md:p-12"
+      className="fixed inset-0 z-50 flex justify-center items-center overflow-y-auto"
       onClick={onClose}
     >
       <div
-        className="bg-[var(--glass-background)] backdrop-blur-md rounded-lg overflow-hidden w-full h-full max-w-7xl flex flex-col relative"
+        className="bg-[var(--glass-background)] backdrop-blur-md overflow-hidden w-full h-full md:rounded-lg md:max-w-[700px] md:h-auto md:max-h-[calc(100vh-8rem)] md:mx-28 md:my-16 flex flex-col relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -34,8 +34,9 @@ export default function Modal({ card, onClose }) {
           <X size={24} className="text-white" />
         </button>
 
-        <div className="flex flex-col md:flex-row flex-grow min-h-0">
-          <div className="md:w-3/5 lg:w-2/3 flex-shrink-0 bg-black aspect-video md:aspect-auto">
+        <div className="flex flex-col w-full h-full overflow-hidden">
+          {/* Video Area */}
+          <div className="w-full aspect-video bg-black flex-shrink-0">
             <div className="relative w-full h-full">
               {videoId ? (
                 <iframe
@@ -53,9 +54,10 @@ export default function Modal({ card, onClose }) {
             </div>
           </div>
 
-          <div className="md:w-2/5 lg:w-1/3 p-6 flex flex-col overflow-y-auto">
+          {/* Details Area */}
+          <div className="p-6 md:p-12 flex-grow overflow-y-auto min-h-0">
             <h2 className="text-2xl font-bold mb-3 text-[var(--foreground)]">{card.title}</h2>
-            <p className="text-sm opacity-80 mb-4 flex-grow text-[var(--foreground)]">
+            <p className="text-sm opacity-80 mb-4 text-[var(--foreground)]">
               {card.description}
             </p>
             {card.credits && (
