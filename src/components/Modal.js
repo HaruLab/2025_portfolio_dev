@@ -20,7 +20,7 @@ export default function Modal({ card, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex justify-center items-center p-4 md:p-12 backdrop-blur-sm bg-black/20"
+      className="fixed inset-0 z-50 flex justify-center items-center p-4 md:p-12"
       onClick={onClose}
     >
       <div
