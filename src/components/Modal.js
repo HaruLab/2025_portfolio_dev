@@ -23,7 +23,7 @@ export default function Modal({ card, onClose }) {
       onClick={onClose}
     >
       <div
-        className="bg-[var(--background)] overflow-hidden w-full h-full md:rounded-lg md:max-w-[700px] md:h-auto md:max-h-[calc(100vh-8rem)] md:mx-28 md:my-16 flex flex-col relative border-2 border-[var(--border-color)]"
+        className="bg-[var(--background)] overflow-hidden w-full rounded-lg max-w-[700px] h-auto max-h-[90vh] m-4 sm:m-8 flex flex-col relative border-2 border-[var(--border-color)]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -35,7 +35,7 @@ export default function Modal({ card, onClose }) {
 
         <div className="flex flex-col w-full h-full overflow-hidden">
           {/* Video Area */}
-          <div className="w-full aspect-video bg-black flex-shrink-0 md:rounded-t-lg overflow-hidden">
+          <div className="w-full aspect-video bg-black flex-shrink-0">
             <div className="relative w-full h-full">
               {videoId ? (
                 <iframe

@@ -45,8 +45,7 @@ export default function WorksPage() {
     {
       imgSrc: "https://i.ytimg.com/vi/sSSP_BU-bDU/hqdefault.jpg",
       title: "Realize",
-      description:
-        "未来へ向かって駆け抜ける、希望に満ちた楽曲のミュージックビデオ。",
+      description: "MVを制作しました。",
       href: "https://www.youtube.com/watch?v=sSSP_BU-bDU&list=PL_IDDWCeMOvfUv5lD2VfvLX4TSVfLvrZv",
       credits: {
         Vocal: "夢前黎",
