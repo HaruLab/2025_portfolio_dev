@@ -165,13 +165,16 @@ export default function Price() {
             </DetailsInfo>
 
             <DetailsInfo summary="注意事項">
-              <p>納期まで１ヶ月を切っている場合受付できません。</p>
+              <p>納期まで１ヶ月を切っている場合受付できないことがあります。</p>
             </DetailsInfo>
 
             <DetailsInfo summary="お支払い方法について">
               <p>
                 PayPal、Kyash、Amazonギフト券に対応。誠に勝手ながら銀行振込は対応しておりません。
               </p>
+            </DetailsInfo>
+            <DetailsInfo summary="実績公開について">
+              <p>非公開希望の場合は事前にご相談ください。</p>
             </DetailsInfo>
 
             <DetailsInfo summary="事前に伝えてほしいこと">
