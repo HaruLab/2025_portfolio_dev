@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 
 const SelectField = ({ id, label, options, description, onChange, value }) => {
   return (
-    <div className="mb-5">
+    <div className="mb-3">
       <h2 className="text-h1 font-bold mb-2">{label}</h2>
 
       <label htmlFor={id} className="sr-only">
@@ -13,7 +13,7 @@ const SelectField = ({ id, label, options, description, onChange, value }) => {
       <select
         id={id}
         name={id}
-        className="w-full py-2 px-3 mt-1 appearance-none rounded-full bg-[var(--select-menu-background)]"
+        className="w-full py-5 px-5 mt-1 appearance-none rounded-full bg-[var(--select-menu-background)]"
         onChange={onChange}
         value={value}
       >

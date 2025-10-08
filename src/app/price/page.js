@@ -99,7 +99,7 @@ export default function Price() {
       <Header />
       <BottomMenu />
 
-      <main className="pt-20 flex-1 p-20 max-w-2xl mx-auto">
+      <main className="pt-20 flex-1 p-10 max-w-2xl mx-auto">
         <form id="mvForm" ref={formRef}>
           <SelectField
             id="videoType"
