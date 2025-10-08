@@ -12,13 +12,25 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
-  const titleRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const logoRef = useRef(null);
-  const nameRef = useRef(null);
-  const introRef = useRef(null);
-  const snsRef = useRef(null);
-  const contactRef = useRef(null);
+  const socialLinks = [
+    { name: "Twitter（X）", url: "https://twitter.com/your_x_account" },
+    { name: "Discord", url: "https://discord.gg/yourdiscord" },
+  ];
+
+  const contactInfo = {
+    email: "harulablab@gmail.com",
+    discord: "harulab",
+  };
+
+  const refs = {
+    title: useRef(null),
+    description: useRef(null),
+    logo: useRef(null),
+    name: useRef(null),
+    intro: useRef(null),
+    sns: useRef(null),
+    contact: useRef(null),
+  };
 
   useEffect(() => {
     const animate = (target, vars) => {
@@ -34,17 +46,17 @@ export default function About() {
       });
     };
 
-    animate(titleRef.current.querySelectorAll(".title-char"), {
+    animate(refs.title.current.querySelectorAll(".title-char"), {
       y: 20,
       duration: 1,
       stagger: 0.1,
     });
-    animate(descriptionRef.current, { y: 20, duration: 1 });
-    animate(logoRef.current, { duration: 1.5, scale: 0.8 });
-    animate(nameRef.current, { y: 20, duration: 1 });
-    animate(introRef.current, { y: 20, duration: 1 });
-    animate(snsRef.current, { y: 20, duration: 1 });
-    animate(contactRef.current, { y: 20, duration: 1 });
+    animate(refs.description.current, { y: 20, duration: 1 });
+    animate(refs.logo.current, { duration: 1.5, scale: 0.8 });
+
+    ['name', 'intro', 'sns', 'contact'].forEach(key => {
+      animate(refs[key].current, { y: 20, duration: 1 });
+    });
   }, []);
 
   const titleChars = "About".split("").map((char, index) => (
@@ -59,13 +71,13 @@ export default function About() {
 
       <div
         className="flex items-center justify-between pt-20 pb-6 px-6 md:px-12 max-w-3xl mx-auto w-full"
-        ref={titleRef}
+        ref={refs.title}
       >
         <h1 className="text-5xl font-bold font-montserrat">{titleChars}</h1>
         <p
           className="font-montserrat text-right leading-relaxed max-w-xs"
           style={{ fontSize: "0.5rem" }}
-          ref={descriptionRef}
+          ref={refs.description}
         >
           My Profile & Contacts
         </p>
@@ -78,7 +90,7 @@ export default function About() {
           <div
             className="rounded-full border-2 p-2 w-40 h-40 flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-500"
             style={{ borderColor: "var(--border-color)" }}
-            ref={logoRef}
+            ref={refs.logo}
           >
             <Image
               src={logo}
@@ -92,19 +104,19 @@ export default function About() {
 
         <h1
           className="text-3xl font-extrabold mb-5 mt-30 text-left w-full"
-          ref={nameRef}
+          ref={refs.name}
         >
           晴芽 (HARULAB)
         </h1>
 
         <section
           className="mt-5 mb-10 text-left text-sm leading-relaxed max-w-xl opacity-90"
-          ref={introRef}
+          ref={refs.intro}
         >
           <p>作ること全般が好きです。</p>
         </section>
 
-        <section className="mb-10 text-left w-full" ref={snsRef}>
+        <section className="mb-10 text-left w-full" ref={refs.sns}>
           <h2
             className="text-3xl font-semibold mb-6 tracking-wide"
             style={{
@@ -115,38 +127,27 @@ export default function About() {
             SNS
           </h2>
           <div className="flex gap-3 text-sm">
-            <a
-              href="https://twitter.com/your_x_account"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative hover:underline"
-            >
-              <span
-                className="font-mono text-sm px-2 py-1 rounded"
-                style={{ backgroundColor: "var(--select-menu-background)" }}
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative hover:underline"
               >
-                Twitter（X）
-              </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full"></span>
-            </a>
-            <a
-              href="https://discord.gg/yourdiscord"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative hover:underline"
-            >
-              <span
-                className="font-mono text-sm px-2 py-1 rounded"
-                style={{ backgroundColor: "var(--select-menu-background)" }}
-              >
-                Discord
-              </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full"></span>
-            </a>
+                <span
+                  className="font-mono text-sm px-2 py-1 rounded"
+                  style={{ backgroundColor: "var(--select-menu-background)" }}
+                >
+                  {link.name}
+                </span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full"></span>
+              </a>
+            ))}
           </div>
         </section>
 
-        <section className="text-left max-w-md mb-1 w-full" ref={contactRef}>
+        <section className="text-left max-w-md mb-1 w-full" ref={refs.contact}>
           <h2
             className="text-3xl font-semibold mb-6 tracking-wide"
             style={{
@@ -158,12 +159,12 @@ export default function About() {
           </h2>
 
           <p className="mb-3 text-lg">
-            <a href="mailto:harulablab@gmail.com" className="hover:underline">
+            <a href={`mailto:${contactInfo.email}`} className="hover:underline">
               <span
                 className="font-mono text-sm px-2 py-1 rounded"
                 style={{ backgroundColor: "var(--select-menu-background)" }}
               >
-                harulablab@gmail.com
+                {contactInfo.email}
               </span>
             </a>
           </p>
@@ -173,7 +174,7 @@ export default function About() {
               className="font-mono text-sm px-2 py-1 rounded"
               style={{ backgroundColor: "var(--select-menu-background)" }}
             >
-              Discord: harulab
+              Discord: {contactInfo.discord}
             </span>
           </p>
         </section>

@@ -17,6 +17,7 @@
   --card-background: #f0f0f0;
   --select-menu-background: #f0f0f0;
   --border-color: #dddddd;
+  --glass-background: rgba(249, 249, 249, 0.8);
 
   --font-size-h1: 1.4rem;
   --font-size-h2: 1rem;
@@ -34,6 +35,7 @@
   --card-background: #1a1a1a;
   --select-menu-background: #1a1a1a;
   --border-color: #333333;
+  --glass-background: rgba(14, 14, 14, 0.7);
 }
 
 /* ================================ */

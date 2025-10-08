@@ -5,7 +5,7 @@ const imageLoader = ({ src, width, quality }) => {
   return `${src}?w=${width}&q=${quality || 75}`;
 };
 
-export default function Card({ imgSrc, title, description, href }) {
+export default function Card({ imgSrc, title, description, onClick }) {
   const CardContent = (
     <>
       <div className="aspect-video overflow-hidden">
@@ -36,14 +36,8 @@ export default function Card({ imgSrc, title, description, href }) {
   );
 
   return (
-    <div className="bg-[var(--card-background)] rounded-sm overflow-hidden relative">
-      {href ? (
-        <Link href={href} className="group block relative">
-          {CardContent}
-        </Link>
-      ) : (
-        <div className="group block relative cursor-default">{CardContent}</div>
-      )}
+    <div className="bg-[var(--card-background)] rounded-sm overflow-hidden relative group cursor-pointer" onClick={onClick}>
+      {CardContent}
     </div>
   );
 }

@@ -17,7 +17,7 @@ const PRICE_CONFIG = {
   mv: {
     basic: 5000,
     normal: 10000,
-    premium: 30000,
+    premium: 40000,
   },
   pv: {
     basic: 10000,
@@ -99,11 +99,11 @@ export default function Price() {
       <Header />
       <BottomMenu />
 
-      <main className="pt-25 flex-1 p-10 max-w-2xl mx-auto">
+      <main className="pt-20 flex-1 p-20 max-w-2xl mx-auto">
         <form id="mvForm" ref={formRef}>
           <SelectField
             id="videoType"
-            label="動画タイプ選択"
+            label="動画タイプ"
             options={[
               { value: "mv", label: "ミュージックビデオ (MV)" },
               { value: "pv", label: "プロモーションビデオ (PV)" },
@@ -113,7 +113,7 @@ export default function Price() {
           />
           <SelectField
             id="plan"
-            label="プラン選択"
+            label="プラン"
             options={[
               { value: "basic", label: "松 (simple,fast)" },
               { value: "normal", label: "竹 (一部3DCG OK)" },
@@ -124,7 +124,7 @@ export default function Price() {
           />
           <SelectField
             id="deadline"
-            label="納期まで"
+            label="納期"
             options={[
               { value: "1", label: "1か月以内" },
               { value: "2", label: "2か月以上" },
@@ -153,7 +153,7 @@ export default function Price() {
           />
         </form>
 
-        <aside className="mt-10" ref={asideRef}>
+        <aside className="mt-5" ref={asideRef}>
           <div>
             <DetailsInfo summary="価格改定のお知らせ">
               <p>2025年2月より料金を改定しました。</p>
@@ -165,7 +165,7 @@ export default function Price() {
             </DetailsInfo>
 
             <DetailsInfo summary="注意事項">
-              <p>映像制作は本業ではないため、納期に遅延の可能性があります。</p>
+              <p>納期まで１ヶ月を切っている場合受付できません。</p>
             </DetailsInfo>
 
             <DetailsInfo summary="お支払い方法について">
